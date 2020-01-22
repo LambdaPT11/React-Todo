@@ -1,4 +1,5 @@
 import React from 'react';
+import { TodoData } from './components/TodoData';
 import Form from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
@@ -9,9 +10,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      id: '',
-      task: '',
-      completed: false
+      todo: TodoData
     }
   }
   render() {
