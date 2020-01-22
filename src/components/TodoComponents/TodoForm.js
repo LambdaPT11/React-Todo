@@ -1,44 +1,41 @@
-import React from 'react';
-// with class use render but remember render is a 
-// function and the return falls inside that block
-class Form extends React.Component {
-    constructor(props) {
-        super(props)
+import React from "react";
+
+class TodoForm extends React.Component {
+    constructor() {
+        super();
         this.state = {
-            newTask: ''
+            newItem: ""
         };
     }
-    // input handler on input field
-    handleChangeInput = (e) => {
+
+    handleChanges = e => {
+        // update state with each keystroke
         this.setState({
-            [e.target.value]: e.target.value
+            newItem: e.target.value
         });
-    }
-    // function for form submit
-    handleSubmit = (e) => {
+    };
+
+    handelSubmit = e => {
         e.preventDefault();
-        //set the state of this component to the function in app.js
-        this.props.addNewTask( this.state.newTask );
-        //reset the text in input
-        this.setState({ newTask: '' });
-    }
+        console.log("is this thing on?");
+        // add our typed in item to the list!
+        this.props.addItem(this.state.newItem);
+        this.setState({ newItem: '' });
+    };
+
     render() {
-        return(
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <input
-                    type='text'
-                    name='newTask'
-                    //set the value of this input to state
-                    value={this.state.newTask}
-                    placeholder='Todo Task'
-                    onChange={this.handleChangeInput}
-                    ></input>
-                    <button type='submit' >Add</button>
-                </div>
+        return (
+            <form onSubmit={this.handelSubmit}>
+                <input 
+                type="text"
+                name="item"
+                value={this.state.newItem}
+                onChange={this.handleChanges}
+                />
+                <button className="add-task-btn">Add Task</button>
             </form>
-        )
+        );
     }
 }
 
-export default Form;
+export default TodoForm
