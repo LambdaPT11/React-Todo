@@ -13,11 +13,28 @@ class App extends React.Component {
       todo: TodoData
     }
   }
+//function to add task - pass in task that comes from input form
+// use setState method to set new task to state
+// setState is method and uses ()
+// state is an object, so use {}
+// todo is the state object being called
+// use an array to spread in the defined todo state data
+// define the task variables being passed into state.
+  addNewTask = (task) => {
+    this.setState({
+      todo: [...this.state.todo, {
+        title: task,
+        id: Date.now(),
+        completed: false
+      }]
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-          <Form />
+          <Form addNewTask={this.addNewTask} />
           <TodoList />
       </div>
     );
